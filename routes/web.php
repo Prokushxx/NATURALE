@@ -19,7 +19,7 @@ use App\Http\Controllers\Cart;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('site');
 });
 
 Auth::routes();
@@ -37,14 +37,13 @@ route::get("/orderplace",[Products::class,'orderPlace']);
 route::post("/orderplace",[Products::class,'orderPlace']);
 
 
-// route::group(['middleware' => ['protect']], function () {
+route::group(['middleware' => ['protect']], function () {
   route::view('naturale', 'naturale')
-  // ->middleware('admin')
+  ->middleware('admin')
   ;
   route::get('/products', [Pics::class, 'create']);
   route::POST('/products', [Pics::class, 'store']);
   Route::delete('/products/{product}', [Pics::class, 'destroy'])->name('products.destroy');
-  route::get('/users', [Usercontroller::class, 'userpage']);
+  route::get('/users', [Usercontroller::class, 'userpage']);    
   route::get("/ordernow",[Products::class,'orderNow']);
-  Route::delete('/users/{user}', [Usercontroller::class, 'destroyusers'])->name('user.destroy');
-// });
+  Route::delete('/users/{user}', [Usercontroller::class, 'destroyusers'])->name('user.destroy');});

@@ -29,7 +29,6 @@ class LoginController extends Controller
      */
     public function session(Request $req){
       
-    
     $req->session()->put('user', $req->email);
     }
     protected $redirectTo = RouteServiceProvider::HOME;
